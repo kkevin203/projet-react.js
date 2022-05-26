@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
 
 const Button = () => {
   const [count, setCount] = useState(0);
