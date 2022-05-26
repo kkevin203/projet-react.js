@@ -1,11 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
 import Button from './Button';
+import FormInput from './component/formInput';
 
 function App() {
   return (
     <div className="App">
-      <Button />
+      <FormInput
+      label="prénom"
+      placeholder="Votre prénom"
+      color="purple"
+       />
     </div>
   );
 }
