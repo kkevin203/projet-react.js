@@ -1,10 +1,17 @@
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from 'react';
 import './App.css';
-import React, { useState } from 'react';
 import store from './store';
 
 function App() {
-  const [todo, seTodo] = usestate('');
+  const [todo, setTodo] = useState('');
   const [todos, setTodos] = useState([]);
+
+  useEffect(()=>{
+    store.subscribe(()=>{
+      setTodos(store.getState().todos)
+    })
+  },[]);
 
   const changeHandler = (event) => {
     setTodo(event.targer.value);
@@ -13,13 +20,14 @@ function App() {
   const submiHandler = (event) => {
     event.preventDefault();
   };
-  if (todo.trim().lenght === 0) {
+
+  if (todo.trim().length === 0) {
     return;
   }
 
   store.dispatch({
     type: 'ADD_TODO',
-    payload: todo.trim(),
+    payload: todo.trim()
   });
 
   setTodo('');
@@ -31,9 +39,12 @@ function App() {
         <button>add</button>
       </form>
       <ol>
-        {todos.map((todo) => <li>{todo}</li>)}
+        {todos.map((todo) => (
+          <li>{todo}</li>
+        ))}
         ;
-      </ol>;
+      </ol>
+      ;
     </div>
   );
 }
